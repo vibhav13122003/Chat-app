@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 5px solid yellow;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #cc5a5a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Mark Sheet</h2>
+
+    <table id="marksheet">
+        <tr>
+            <th>Subject</th>
+            <th>Obtained Marks</th>
+            <th>Max Marks</th>
+        </tr>
+        <tr>
+            <td>OS</td>
+            <td><input type="number" id="osMarks" min="0" max="100"></td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>TOAFL</td>
+            <td><input type="number" id="toeflMarks" min="0" max="100"></td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Math</td>
+            <td><input type="number" id="mathMarks" min="0" max="100"></td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Cybersecurity</td>
+            <td><input type="number" id="cybersecurityMarks" min="0" max="100"></td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>OOPs</td>
+            <td><input type="number" id="oopsMarks" min="0" max="100"></td>
+            <td>100</td>
+        </tr>
+    </table>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateResult() {
+            var osMarks = parseInt(document.getElementById('osMarks').value);
+            var toeflMarks = parseInt(document.getElementById('toeflMarks').value);
+            var mathMarks = parseInt(document.getElementById('mathMarks').value);
+            var cybersecurityMarks = parseInt(document.getElementById('cybersecurityMarks').value);
+            var oopsMarks = parseInt(document.getElementById('oopsMarks').value);
+
+            var totalMarks = osMarks + toeflMarks + mathMarks + cybersecurityMarks + oopsMarks;
+            var percentage = (totalMarks / 500) * 100;
+            var grade;
+
+            if (percentage >= 90) {
+                grade = 'A+';
+            } else if (percentage >= 80) {
+                grade = 'A';
+            } else if (percentage >= 70) {
+                grade = 'B';
+            } else if (percentage >= 60) {
+                grade = 'C';
+            } else if (percentage >= 50) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            var result = "Total Marks: " + totalMarks + "<br>" +
+                "Percentage: " + percentage.toFixed(2) + "%<br>" +
+                "Grade: " + grade;
+
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+
+</body>
+
+</html>
